@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Items{% endblock %}
+
+{% block body %}
+    <h1>Items</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ item.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ item.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ item.description }}</td>
+            </tr>
+            <tr>
+                <th>StartingPrice</th>
+                <td>{{ item.startingPrice }}</td>
+            </tr>
+            <tr>
+                <th>ReservePrice</th>
+                <td>{{ item.reservePrice }}</td>
+            </tr>
+            <tr>
+                <th>BuyoutPrice</th>
+                <td>{{ item.buyoutPrice }}</td>
+            </tr>
+            <tr>
+                <th>StartTime</th>
+                <td>{{ item.startTime ? item.startTime|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>EndTime</th>
+                <td>{{ item.endTime ? item.endTime|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ item.status }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ item.createdAt ? item.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ item.updatedAt ? item.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_items_index') }}">back to list</a>
+
+    <a href="{{ path('app_items_edit', {'id': item.id}) }}">edit</a>
+
+    {{ include('items/_delete_form.html.twig') }}
+{% endblock %}

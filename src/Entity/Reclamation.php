@@ -26,8 +26,8 @@ class Reclamation
     #[ORM\Column(type: "datetime")]
     private ?\DateTimeInterface $dateReclamation = null;
 
-    #[ORM\ManyToOne(targetEntity: "Items")]
-    #[ORM\JoinColumn(name: "item_id", referencedColumnName: "id")]
+    #[ORM\ManyToOne(targetEntity: Items::class)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Items $item = null;
 
     #[ORM\ManyToOne(targetEntity: "Users")]

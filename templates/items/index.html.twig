@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Items index{% endblock %}
+
+{% block body %}
+    <h1>Items index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>StartingPrice</th>
+                <th>ReservePrice</th>
+                <th>BuyoutPrice</th>
+                <th>StartTime</th>
+                <th>EndTime</th>
+                <th>Status</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.startingPrice }}</td>
+                <td>{{ item.reservePrice }}</td>
+                <td>{{ item.buyoutPrice }}</td>
+                <td>{{ item.startTime ? item.startTime|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ item.endTime ? item.endTime|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ item.status }}</td>
+                <td>{{ item.createdAt ? item.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ item.updatedAt ? item.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_items_show', {'id': item.id}) }}">show</a>
+                    <a href="{{ path('app_items_edit', {'id': item.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_items_new') }}">Create new</a>
+{% endblock %}

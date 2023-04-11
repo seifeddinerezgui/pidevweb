@@ -31,19 +31,23 @@ class Users
     #[ORM\Column(type: "datetime", nullable: false)]
     private \DateTime $updatedAt;
 
-    #[ORM\ManyToMany(targetEntity: "Items", inversedBy: "user")]
-    #[ORM\JoinTable(name: "watchlist",
-   joinColumns: [#[ORM\JoinColumn(name: "user_id", referencedColumnName: "id")]],
-       inverseJoinColumns: [#[ORM\JoinColumn(name: "item_id", referencedColumnName: "id")]]
-    )]
-    private array $item = [];
+   
+    /**
+ * @ORM\ManyToMany(targetEntity="Items", inversedBy="users")
+ * @ORM\JoinTable(name="watchlist",
+ *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+ *      inverseJoinColumns={@ORM\JoinColumn(name="item_id", referencedColumnName="id")}
+ * )
+ */
+private $item;
 /**
      * Constructor
      */
     public function __construct()
-    {
-        $this->item = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+{
+    $this->item = new ArrayCollection();
+}
+
 
     public function getId(): ?int
     {
@@ -134,4 +138,8 @@ class Users
         return $this;
     }
 
+    public function __toString(): string
+    {
+        return $this->getUsername();
+    }
 }

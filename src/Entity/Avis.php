@@ -27,7 +27,7 @@ class Avis
     private ?\DateTimeInterface $dateAvis = null;
 
     #[ORM\ManyToOne(targetEntity: Items::class)]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Items $item = null;
 
     #[ORM\ManyToOne(targetEntity: Users::class)]
